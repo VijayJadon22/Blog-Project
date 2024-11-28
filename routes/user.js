@@ -12,8 +12,8 @@ router.get('/signup', (req, res) => {
     return res.render("signup");
 });
 
-router.post('/signup', signUpUser);
-// router.post('/signup', fileUpload.single("profileImage"), signUpUser);
+// router.post('/signup', signUpUser);
+router.post('/signup', fileUpload.single("profileImage"), signUpUser);
 router.post('/signin', signInUser);
 
 router.get('/logout', logoutUser);

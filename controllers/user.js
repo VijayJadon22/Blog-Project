@@ -4,21 +4,16 @@ const { createTokenForUser } = require('../services/authentication');
 
 async function signUpUser(req, res) {
     try {
-        const { fullName, email, password } = req.body;
-        // const profileImageURL = "/images" + req.file.filename;
-        // await User.create({
-        //     fullName,
-        //     email,
-        //     password,
-        //     profileImageURL,
-        //     role
-        // });
+        const { fullName, email, password, role } = req.body;
+        const profileImageURL = `/images/${req.file.filename}`;
         await User.create({
             fullName,
             email,
-            password
+            password,
+            profileImageURL,
+            role
         });
-        return res.redirect("/");
+        return res.render("signin");
     } catch (error) {
         console.error("Error: ", error);
     }
@@ -35,7 +30,7 @@ async function signInUser(req, res) {
             return res.render('signin', { error: "Invalid password" });
         }
         const token = createTokenForUser(user);
-        console.log("token: ", token);
+        // console.log("token: ", token);
         return res.cookie("token", token).redirect("/");
     } catch (error) {
         console.error("Error: ", error);

@@ -26,11 +26,11 @@
         </div>
 
         <div class="container mt-3 mb-4">
-            <h2>Comments</h2>
+            <h3>Comments (<%= locals.comments.length %>)</h3>
             <% if (locals.comments) { %>
                 <% locals.comments.forEach(comment=> { %>
                     <p>
-                        <%= comment.createdBy.fullName %> - <b><%= comment.content %></b>
+                        <img src="<%= comment.createdBy.profileImageURL %>" alt="user profile image" srcset="" width="20px"> <%= comment.createdBy.fullName %> - <b><%= comment.content %></b>
                     </p>
                     <% }) %>
                         <% } %>
