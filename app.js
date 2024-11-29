@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const userRouter = require('./routes/user');
@@ -11,7 +12,7 @@ const commentRouter = require('./routes/comment');
 
 
 const app = express();
-const PORT = 8005;
+const PORT = process.env.PORT || 8005;
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));

@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const { createTokenForUser } = require('../services/authentication');
+const { sendEmail } = require('../services/email');
 
 async function signUpUser(req, res) {
     try {
@@ -13,6 +14,10 @@ async function signUpUser(req, res) {
             profileImageURL,
             role
         });
+
+        // Send the welcome email using nodemailer
+        await sendEmail(email);
+
         return res.render("signin");
     } catch (error) {
         console.error("Error: ", error);
